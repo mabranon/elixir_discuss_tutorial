@@ -10,6 +10,6 @@ defmodule Discuss.AuthController do
     IO.puts "+++++++++++++++"
     IO.inspect params
     IO.puts "+++++++++++++++"
-    IO.puts "+++++++++++++++"
+    IO.puts "++++++++++ets+++++"
   end
 end
