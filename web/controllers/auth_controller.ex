@@ -6,7 +6,7 @@ defmodule Discuss.AuthController do
 
   def callback(
     %{assigns: %{ueberauth_auth: auth}} = conn, 
-    %{"provider" => provider} = params
+    %{"provider" => provider}
   ) do
     user_params = %{
       token: auth.credentials.token,
@@ -30,6 +30,12 @@ defmodule Discuss.AuthController do
         |> put_flash(:error, "Error signing in")
         |> redirect(to: topic_path(conn, :index))
     end    
+  end
+
+  def signout(conn, _params) do
+    conn
+    |> configure_session(drop: true)
+    |> redirect(to: topic_path(conn, :index))
   end
 
   defp insert_or_update_user(changeset) do
