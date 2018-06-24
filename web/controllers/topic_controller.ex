@@ -3,6 +3,10 @@ defmodule Discuss.TopicController do
 
 	alias Discuss.Topic
 
+	@requires_auth ~w(new create edit update delete)a
+
+	plug Discuss.Plugs.RequireAuth when action in @requires_auth
+
 	def index(conn, _params) do
 		topics = Repo.all(Topic)
 
