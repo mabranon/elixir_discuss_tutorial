@@ -20,16 +20,18 @@ defmodule Discuss.TopicController do
 	end
 
 	def create(conn, %{"topic" => topic_title}) do
-		changeset = Topic.changeset(%Topic{}, topic_title)
+		changeset = conn.assigns.user
+			|> build_assoc(:topics)
+			|> Topic.changeset(topic_title)
 
-	 case Repo.insert(changeset) do
-		 {:ok, _topic} ->
-			 conn
-			 |> put_flash(:info, "Topic Created")
-			 |> redirect(to: topic_path(conn, :index))
-		 {:error, changeset} ->
-			 render conn, "new.html", changeset: changeset
-	 end
+		case Repo.insert(changeset) do
+			{:ok, _topic} ->
+				conn
+				|> put_flash(:info, "Topic Created")
+				|> redirect(to: topic_path(conn, :index))
+			{:error, changeset} ->
+				render conn, "new.html", changeset: changeset
+		end
  end
 
 	def edit(conn, %{"id" => topic_id}) do
