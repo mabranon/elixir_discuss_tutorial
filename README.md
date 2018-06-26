@@ -1,3 +1,10 @@
+Follow-along project for: https://www.udemy.com/the-complete-elixir-and-phoenix-bootcamp-and-tutorial/
+
+Possible Improvements:  
+- [ ] Delete/Edit Comments for authorized users
+- [ ] Convert to Phoenix 1.3
+- [ ] Improve Javascrit
+
 # Discuss
 
 To start your Phoenix app:
