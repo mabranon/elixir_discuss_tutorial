@@ -3,6 +3,8 @@ defmodule Discuss.User do
 
   @field_list ~w(email provider token)a
 
+  @derive {Poison.Encoder, only: [:email]}
+
   schema "users" do
     field :email, :string
     field :provider, :string
